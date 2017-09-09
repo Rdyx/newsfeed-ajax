@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding-top: 50px;
+    background-image: url('Images/fond.jpg');
+    color : white;
+}
+
+a, a:visited, a:active{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.topImage {
+    margin: 5px 0 5px 0;
+    max-width: 89%;
+    max-height: 150px;
+    border: 1px solid white;
+}
+
+#logo {
+    border: 1px dashed white;
+    padding: 0 0.5em 0 0.5em;
+    font-weight: 900;
+}
+
+.navStyle {
+    background: linear-gradient(#191919, #000000);
+    border-bottom: 1px solid grey;
+}
+
+.navImg {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.contour {
+    border: 1px solid white;
+    margin: 5px 0 5px 0;
+    background-color: rgba(0,0,0,0.75)
+}
+
+.titre {
+    font-weight: 900;
+    font-size: 2.5em;
+    padding: 0 0 5px 0;
+    border-bottom : 1px solid white;
+}
+
+.contenu {
+    font-size: 1em;
+    padding: 10px 1em 10px 1em;
+}
+
+.topMenu {
+    margin: 1em 1em 1em 1em;
+}
+
+.footer{
+    color: rgba(255,255,255,0.75);
+    background-color: rgba(0,0,0,0.5);
+    border: 1px dashed rgba(255,255,255,0.75);
+    padding-top: 0.5em;
+    margin-top: 5px;
+}

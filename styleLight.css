@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding-top: 50px;
+    background-image: url('Images/fond2.jpg');
+    color : black;
+}
+
+a, a:visited, a:active{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.topImage {
+    margin: 5px 0 5px 0;
+    max-width: 89%;
+    max-height: 150px;
+    border: 1px solid black;
+}
+
+#logo {
+    border: 1px dashed black;
+    padding: 0 0.5em 0 0.5em;
+    font-weight: 900;
+}
+
+.navStyle {
+    background: linear-gradient(#FFFFFF, #D3D3D3);
+    border-bottom: 1px solid grey;
+}
+
+.navImg {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.contour {
+    border: 1px solid black;
+    margin: 5px 0 5px 0;
+    background-color: rgba(255,255,255,0.75)
+}
+
+.titre {
+    font-weight: 900;
+    font-size: 2.5em;
+    padding: 0 0 5px 0;
+    border-bottom : 1px solid black;
+}
+
+.contenu {
+    font-size: 1em;
+    padding: 10px 1em 10px 1em;
+}
+
+.topMenu {
+    margin: 1em 1em 1em 1em;
+}
+
+.footer{
+    color: rgba(0,0,0,0.75);
+    background-color: rgba(255,255,255,0.5);
+    border: 1px dashed rgba(0,0,0,0.75);
+    padding-top: 0.5em;
+    margin-top: 5px;
+}
