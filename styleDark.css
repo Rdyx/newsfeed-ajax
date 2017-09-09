@@ -13,7 +13,9 @@ a, a:visited, a:active{
 a:hover {
     text-decoration: underline;
 }
+
 .topImage {
+    border-radius: 3px;    
     margin: 5px 0 5px 0;
     max-width: 89%;
     max-height: 150px;
@@ -36,6 +38,7 @@ a:hover {
     border-right: 1px solid white;
 }
 .contour {
+    border-radius: 3px;
     border: 1px solid white;
     margin: 5px 0 5px 0;
     background-color: rgba(0,0,0,0.75)
@@ -51,6 +54,10 @@ a:hover {
 .contenu {
     font-size: 1em;
     padding: 10px 1em 10px 1em;
+}
+
+.txtTheme {
+    padding: 0.5em;
 }
 
 .topMenu {
