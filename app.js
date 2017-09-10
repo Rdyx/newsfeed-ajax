@@ -5,8 +5,9 @@ var labelArray = [];
 
 //Lancement du système de récup des news via ajax + du système de libellés
 $('.news').click(function () {
-    //Set du tableau à 0 quand click sur news pour éviter le double push
+    //Set des tableau à 0 quand click sur news pour éviter le double push
     array = [];
+    labelArray = [];
     //Requête ajax des données googlesheet
     $.ajax({
         url: "https://spreadsheets.google.com/feeds/list/1vOJ4-chLBEDQF7TzzgbVeuLpyrVT1ZqPVB5omiI75b0/od6/public/values?alt=json",
@@ -60,7 +61,6 @@ $('.news').click(function () {
                     array[l][3] != 'Toutes' ? $('#news' + l).removeClass('hidden') : $('#news' + l).removeClass('hidden');
                 }
             })
-
         },
         //En cas d'erreur
         error: function () {
