@@ -14,8 +14,10 @@ $('.news').click(function () {
             console.log(data);
             //On remet le #content à 0
             $('#content').html('');
-            //On set la liste des libellés à 0 pour être sûr qu'elle soit vierge et on fait apparaître le bouton de thèmes
-            $('.libelList').html('');
+            //On set la liste des libellés à 0 avec un bouton "Toutes" (qui servira à enlever la classe hidden
+            //sur toutes les news qui l'ont, cela évitera d'avoir à reload forcément la page)
+            //De plus la liste sera vierge et on fait apparaître le bouton de thèmes
+            $('.libelList').html('<li class="text-center"><a class="allLibels" href="#">Toutes</a></li>');
             $('.libelDrop').removeClass('hidden');
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
@@ -49,6 +51,16 @@ $('.news').click(function () {
                     array[l][3] != $(this).html() ? $('#news' + l).addClass('hidden') : $('#news' + l).removeClass('hidden');
                 }
             })
+            //Pour réafficher toutes les news en cliquant sur le thème "Toutes"
+            $('.allLibels').click(function () {
+                //Boucle qui parcours tout le tableau de news pour récupérer 
+                //les news via leur numéros et comparer leurs thèmes (array[i][3])
+                //Avec la valeur du lien cliqué et qui ajout/retire la classe hidden en fonction du résultat
+                for (var l = 0; l < array.length; l++) {
+                    array[l][3] != 'Toutes' ? $('#news' + l).removeClass('hidden') : $('#news' + l).removeClass('hidden');
+                }
+            })
+
         },
         //En cas d'erreur
         error: function () {
