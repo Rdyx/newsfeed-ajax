@@ -1,6 +1,7 @@
 //Set initial du compteur et du tableau
 var counter = 0;
 var array = [];
+var labelArray = [];
 
 //Lancement du système de récup des news via ajax + du système de libellés
 $('.news').click(function () {
@@ -13,9 +14,14 @@ $('.news').click(function () {
             console.log(data);
             //On remet le #content à 0
             $('#content').html('');
+            //On set la liste des libellés à 0 pour être sûr qu'elle soit vierge et on fait apparaître le bouton de thèmes
+            $('.libelList').html('');
+            $('.libelDrop').removeClass('hidden');
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
                 array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t]);
+                //tableau pour les libellés (dont on se servira pour la liste et éviter les doublons via fonction)
+                labelArray.push(data.feed.entry[i].gsx$theme.$t);
             };
             //On affiche les news dans l'ordre décroissant de leur apparition (du - ancien au + ancien)
             //avec une boucle qui prend comme var j = nombres d'entrées -1 et qui bouclera tant que 
@@ -29,14 +35,18 @@ $('.news').click(function () {
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
                 <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + j + '</li></ul></div> ');
             }
+            //Boucle qui utilise la fonction pour purger les libellés doublons (qui sont stockés sous forme de nouveau tableau dans la fonction)
+            //Tri dans l'ordre alphabétique grâce à .sort()
+            for (var k = 0; k < cleanArray(labelArray).length; k++) {
+                $('.libelList').append('<li class="text-center"><a class="txtTheme" href="#">' + cleanArray(labelArray.sort())[k] + '</a></li>')
+            };
             //Sélection du libellé via clique
             $('.txtTheme').click(function () {
-                //Boucle qui parcours tout le tableau pour récupérer 
+                //Boucle qui parcours tout le tableau de news pour récupérer 
                 //les news via leur numéros et comparer leurs thèmes (array[i][3])
                 //Avec la valeur du lien cliqué et qui ajout/retire la classe hidden en fonction du résultat
-                for (var i = 0; i < array.length; i++) {
-                    console.log("kkek");
-                    array[i][3] != $(this).html() ? $('#news' + i).addClass('hidden') : $('#news' + i).removeClass('hidden');
+                for (var l = 0; l < array.length; l++) {
+                    array[l][3] != $(this).html() ? $('#news' + l).addClass('hidden') : $('#news' + l).removeClass('hidden');
                 }
             })
         },
@@ -61,8 +71,18 @@ $('.swapTheme').click(function () {
     //     }
 })
 
-//préparation gestion des libellés automatique via googlesheet pour moins de maintenabilité
-//                 $('.libelList').append('<li class="text-center"><a class="txtTheme" href="#">'+array[i][3]+'</a></li>');
-            //On reset la liste des libellés
-//$('.libelList').html('');
-//Probable if else à ajouter pour éviter les doublons
+//fonction clean les doublons des libellés pour éviter de push plusieurs fois les mêmes thèmes dans la liste
+//p.s : trouvée sur https://www.unicoda.com/?p=579
+function cleanArray(array) {
+    var i, out = [], obj = {};
+    //Boucle qui va récup les libellés et les transformer en objet, du coup les doublons sont supprimés
+    //automatiquement car ils représentent le même objet
+    for (i = 0; i < array.length; i++) {
+        obj[array[i]] = 0;
+    }
+    //Boucle qui parcours les objets dans obj et les push dans un nouveau tableau purgé des doublons
+    for (var j in obj) {
+        out.push(j);
+    }
+    return out;
+}
