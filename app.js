@@ -16,15 +16,20 @@ $('.news').click(function () {
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
                 array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t]);
+            };
+            //On affiche les news dans l'ordre décroissant de leur apparition (du - ancien au + ancien)
+            //avec une boucle qui prend comme var j = nombres d'entrées -1 et qui bouclera tant que 
+            //j sera supérieur à -1 et sera décrémentée à chaque tour (donc qui finit avec j = 0, premier index du tableau)
+            for (var j = (data.feed.entry).length - 1; j > -1; j--) {
                 //On push dans le #content avec les classes pour le style, flèche up pour remonter au top et nom du thème de l'article
-                $('#content').append('<div class="contour" id="news' + i + '"><div class="row">\
-                <img class="topImage" src="' + array[i][0] + '"></div><div class="titre">\
-                ' + array[i][1] + '</div><div class="contenu text-justify">\
-                ' + array[i][2] + '</div><a href="#" alt="Back-To-The-Top !">\
+                $('#content').append('<div class="contour" id="news' + j + '"><div class="row">\
+                <img class="topImage" src="' + array[j][0] + '"></div><div class="titre">\
+                ' + array[j][1] + '</div><div class="contenu text-justify">\
+                ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
-                <li><a class="txtTheme" href="#">'+ array[i][3] + '</a></li></ul></div> ');
+                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + j + '</li></ul></div> ');
             }
-            //Sélection du libéllé via clique
+            //Sélection du libellé via clique
             $('.txtTheme').click(function () {
                 //Boucle qui parcours tout le tableau pour récupérer 
                 //les news via leur numéros et comparer leurs thèmes (array[i][3])
@@ -55,3 +60,9 @@ $('.swapTheme').click(function () {
     //         counter--;
     //     }
 })
+
+//préparation gestion des libellés automatique via googlesheet pour moins de maintenabilité
+//                 $('.libelList').append('<li class="text-center"><a class="txtTheme" href="#">'+array[i][3]+'</a></li>');
+            //On reset la liste des libellés
+//$('.libelList').html('');
+//Probable if else à ajouter pour éviter les doublons
