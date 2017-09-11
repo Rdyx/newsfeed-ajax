@@ -18,7 +18,7 @@ $('.news').click(function () {
             //On set la liste des libellés à 0 avec un bouton "Toutes" (qui servira à enlever la classe hidden
             //sur toutes les news qui l'ont, cela évitera d'avoir à reload forcément la page)
             //De plus la liste sera vierge et on fait apparaître le bouton de thèmes
-            $('.libelList').html('<li class="text-center"><a class="allLibels" href="#">Toutes</a></li>');
+            $('.libelList').html('<li class="text-center"><a class="txtTheme allLibels bolded" href="#">Tous</a></li>');
             $('.libelDrop').removeClass('hidden');
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
@@ -36,7 +36,7 @@ $('.news').click(function () {
                 ' + array[j][1] + '</div><div class="contenu text-justify">\
                 ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
-                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + j + '</li></ul></div> ');
+                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + Number(j + 1) + '</li></ul></div> ');
             }
             //Boucle qui utilise la fonction pour purger les libellés doublons (qui sont stockés sous forme de nouveau tableau dans la fonction)
             //Tri dans l'ordre alphabétique grâce à .sort()
@@ -45,6 +45,9 @@ $('.news').click(function () {
             };
             //Sélection du libellé via clique
             $('.txtTheme').click(function () {
+                //Mise en valeur du libellé sélectionné
+                $('.txtTheme').removeClass('bolded');
+                $(this).addClass('bolded');
                 //Boucle qui parcours tout le tableau de news pour récupérer 
                 //les news via leur numéros et comparer leurs thèmes (array[i][3])
                 //Avec la valeur du lien cliqué et qui ajout/retire la classe hidden en fonction du résultat

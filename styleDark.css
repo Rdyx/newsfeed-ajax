@@ -14,6 +14,25 @@ a:hover {
     text-decoration: underline;
 }
 
+.dropdown-menu .bolded{
+    font-weight: 900;
+    background: linear-gradient(#191919, #000000);        
+}
+
+.dropdown-menu {
+    background: linear-gradient(#191919, #000000);    
+}
+.dropdown-menu > li > a {
+    color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:active {
+    color: white;
+    font-weight: 900;
+    text-decoration: none;
+    background: linear-gradient(#191919, #000000);
+}
+
 .topImage {
     border-radius: 3px;    
     margin: 5px 0 5px 0;
