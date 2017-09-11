@@ -67,7 +67,7 @@ $('.news').click(function () {
         },
         //En cas d'erreur
         error: function () {
-            $('#content').html('Erreur, veuillez réessayer.');
+            $('#content').html('<div class="contour"><div class="row"></div><div class="titre">Erreur, veuillez réessayer.</div></div>');
         }
     });
 });
