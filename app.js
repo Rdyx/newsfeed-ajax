@@ -22,7 +22,7 @@ $('.news').click(function () {
             $('.libelDrop').removeClass('hidden');
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
-                array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t]);
+                array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t, data.feed.entry[i].gsx$date.$t]);
                 //tableau pour les libellés (dont on se servira pour la liste et éviter les doublons via fonction)
                 labelArray.push(data.feed.entry[i].gsx$theme.$t);
             };
@@ -31,12 +31,12 @@ $('.news').click(function () {
             //j sera supérieur à -1 et sera décrémentée à chaque tour (donc qui finit avec j = 0, premier index du tableau)
             for (var j = (data.feed.entry).length - 1; j > -1; j--) {
                 //On push dans le #content avec les classes pour le style, flèche up pour remonter au top et nom du thème de l'article
-                $('#content').append('<div class="contour" id="news' + j + '"><div class="row">\
+                $('#content').append('<div class="contour news" id="news' + j + '"><div class="row">\
                 <img class="topImage" src="' + array[j][0] + '"></div><div class="titre">\
                 ' + array[j][1] + '</div><div class="contenu text-justify">\
                 ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
-                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + Number(j + 1) + '</li></ul></div> ');
+                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + Number(j + 1) + ' - Publié le <strong>' + array[j][4] + '</strong></li></ul></div> ');
             }
             //Boucle qui utilise la fonction pour purger les libellés doublons (qui sont stockés sous forme de nouveau tableau dans la fonction)
             //Tri dans l'ordre alphabétique grâce à .sort()
