@@ -3,6 +3,7 @@ body {
     padding-top: 50px;
     background-image: url('Images/fond.jpg');
     color : white;
+    font-family: 'Oxygen', sans-serif;
 }
 
 a, a:visited, a:active{
@@ -31,6 +32,12 @@ a:hover {
     font-weight: 900;
     text-decoration: none;
     background: linear-gradient(#191919, #000000);
+}
+
+.maRecherche {
+    background: linear-gradient(#191919, #000000);
+    border-radius: 3px;
+    border: 1px solid white;
 }
 
 .topImage {
@@ -72,7 +79,7 @@ a:hover {
 
 .contenu {
     font-size: 1em;
-    padding: 10px 1em 10px 1em;
+    padding: 10px 5em 10px 5em;
 }
 
 .txtTheme {

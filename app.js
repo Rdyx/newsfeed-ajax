@@ -1,4 +1,4 @@
-//Set initial du compteur et du tableau
+//Set initial du compteur et du tableau + tableau de titres qui servira pour trier les libellés
 var counter = 0;
 var array = [];
 var labelArray = [];
@@ -15,6 +15,8 @@ $('.news').click(function () {
             console.log(data);
             //On remet le #content à 0
             $('#content').html('');
+            //On affiche le champ de recherche
+            $('.maRecherche').removeClass('hidden');
             //On set la liste des libellés à 0 avec un bouton "Toutes" (qui servira à enlever la classe hidden
             //sur toutes les news qui l'ont, cela évitera d'avoir à reload forcément la page)
             //De plus la liste sera vierge et on fait apparaître le bouton de thèmes
@@ -54,7 +56,7 @@ $('.news').click(function () {
                 for (var l = 0; l < array.length; l++) {
                     array[l][3] != $(this).html() ? $('#news' + l).addClass('hidden') : $('#news' + l).removeClass('hidden');
                 }
-            })
+            });
             //Pour réafficher toutes les news en cliquant sur le thème "Toutes"
             $('.allLibels').click(function () {
                 //Boucle qui parcours tout le tableau de news pour récupérer 
@@ -63,7 +65,21 @@ $('.news').click(function () {
                 for (var l = 0; l < array.length; l++) {
                     array[l][3] != 'Toutes' ? $('#news' + l).removeClass('hidden') : $('#news' + l).removeClass('hidden');
                 }
-            })
+            });
+            //Recherche des termes dans les titres en appuyant sur entrée / click out
+            $('.maRecherche').change(function () {
+                //Boucle qui va parcourir le tableau
+                for (var n = 0; n < array.length; n++) {
+                    //On compare les titres dans le tableau avec le champ de recherche. Grâce à .match on va récupérer
+                    //l'input et comparer TOUS les termes des titres avec ce dernier. Le .toUpperCase() permet
+                    //de rendre la recherche insensible à la casse et donc d'éviter les problèmes de frappe
+                    array[n][1].toUpperCase().match($(this).val().toUpperCase()) ? $('#news' + n).removeClass('hidden') : $('#news' + n).addClass('hidden');
+                    //Si l'input est vide on réaffiche tous les articles
+                    if ($(this).val() == false) {
+                        $('#news' + n).removeClass('hidden');
+                    }
+                }
+            });
         },
         //En cas d'erreur
         error: function () {
