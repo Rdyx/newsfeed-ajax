@@ -34,7 +34,7 @@ $('.news').click(function () {
             for (var j = (data.feed.entry).length - 1; j > -1; j--) {
                 //On push dans le #content avec les classes pour le style, flèche up pour remonter au top et nom du thème de l'article
                 $('#content').append('<div class="contour news" id="news' + j + '"><div class="row">\
-                <img class="topImage" src="' + array[j][0] + '"></div><div class="titre">\
+                <a href="'+ array[j][0] + '"><img class="topImage" src="' + array[j][0] + '"></a></div><div class="titre">\
                 ' + array[j][1] + '</div><div class="contenu text-justify">\
                 ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
