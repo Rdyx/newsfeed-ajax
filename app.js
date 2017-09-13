@@ -38,23 +38,46 @@ $('.news').click(function () {
                 ' + array[j][1] + '</div><div class="contenu text-justify">\
                 ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
-                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li>#' + Number(j + 1) + ' - Publié le <strong>' + array[j][4] + '</strong></li></ul></div> ');
+                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li id="newsNum' + j + '">#' + Number(j + 1) + '</li><li>- Publié le <a href="#"><strong class="date">' + array[j][4] + '</strong></a></li></ul></div> ');
             }
             //Boucle qui utilise la fonction pour purger les libellés doublons (qui sont stockés sous forme de nouveau tableau dans la fonction)
             //Tri dans l'ordre alphabétique grâce à .sort()
             for (var k = 0; k < cleanArray(labelArray).length; k++) {
                 $('.libelList').append('<li class="text-center"><a class="txtTheme" href="#">' + cleanArray(labelArray.sort())[k] + '</a></li>')
             };
+            //Ajout d'un libellé random pour permettre l'affichage d'une news au hasard
+            $('.libelList').append('<li class="text-center"><a class="txtTheme" href="#"><i class="fa fa-random" aria-hidden="true"></i> Random</a></li>')
             //Sélection du libellé via clique
             $('.txtTheme').click(function () {
                 //Mise en valeur du libellé sélectionné
                 $('.txtTheme').removeClass('bolded');
                 $(this).addClass('bolded');
+                //Si le clic est sur Random, la fonction randomize(min max) se lance et sort un chiffre au hasard
+                //Une boucle se lance et parcours le tableau pour cacher les news avec un numéro différent du rand
+                //Et affiche celle qui a le même
+                if ($(this).html() == '<i class="fa fa-random" aria-hidden="true"></i> Random') {
+                    randomz = randomize(0, array.length);
+                    for (var l = 0; l < array.length; l++) {
+                        $('#newsNum' + l).html() == '#' + Number(randomz + 1) ? $('#news' + l).removeClass('hidden') : $('#news' + l).addClass('hidden')
+                    }
+                }
                 //Boucle qui parcours tout le tableau de news pour récupérer 
                 //les news via leur numéros et comparer leurs thèmes (array[i][3])
                 //Avec la valeur du lien cliqué et qui ajout/retire la classe hidden en fonction du résultat
+                else {
+                    for (var l = 0; l < array.length; l++) {
+                        array[l][3] != $(this).html() ? $('#news' + l).addClass('hidden') : $('#news' + l).removeClass('hidden');
+                    }
+                }
+            });
+            $('.date').click(function () {
+                //Remise à zéro du style du libellé
+                $('.txtTheme').removeClass('bolded');
+                //Boucle qui parcours tout le tableau de news pour récupérer 
+                //les news via leur numéros et comparer leurs thèmes (array[i][4])
+                //Avec la valeur du lien cliqué et qui ajout/retire la classe hidden en fonction du résultat
                 for (var l = 0; l < array.length; l++) {
-                    array[l][3] != $(this).html() ? $('#news' + l).addClass('hidden') : $('#news' + l).removeClass('hidden');
+                    array[l][4] != $(this).html() ? $('#news' + l).addClass('hidden') : $('#news' + l).removeClass('hidden');
                 }
             });
             //Pour réafficher toutes les news en cliquant sur le thème "Toutes"
@@ -116,4 +139,9 @@ function cleanArray(array) {
         out.push(j);
     }
     return out;
+}
+
+//fonction random
+function randomize(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
 }
