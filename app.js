@@ -3,6 +3,8 @@ var counter = 0;
 var array = [];
 var labelArray = [];
 
+//Call de la fonction modal pour l'img d'intro
+modal();
 //Lancement du système de récup des news via ajax + du système de libellés
 $('.news').click(function () {
     //Set des tableau à 0 quand click sur news pour éviter le double push
@@ -24,7 +26,7 @@ $('.news').click(function () {
             $('.libelDrop').removeClass('hidden');
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
-                array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t, data.feed.entry[i].gsx$date.$t]);
+                array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t, data.feed.entry[i].gsx$date.$t, data.feed.entry[i].gsx$altimg.$t]);
                 //tableau pour les libellés (dont on se servira pour la liste et éviter les doublons via fonction)
                 labelArray.push(data.feed.entry[i].gsx$theme.$t);
             };
@@ -34,7 +36,7 @@ $('.news').click(function () {
             for (var j = (data.feed.entry).length - 1; j > -1; j--) {
                 //On push dans le #content avec les classes pour le style, flèche up pour remonter au top et nom du thème de l'article
                 $('#content').append('<div class="contour news" id="news' + j + '"><div class="row">\
-                <a href="'+ array[j][0] + '"><img class="topImage" src="' + array[j][0] + '"></a></div><div class="titre">\
+                <img class="topImage myImg" src="' + array[j][0] + '" alt="' + array[j][5] + '"></div><div class="titre">\
                 ' + array[j][1] + '</div><div class="contenu text-justify">\
                 ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
                 <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
@@ -104,7 +106,9 @@ $('.news').click(function () {
                         $('#news' + n).removeClass('hidden');
                     }
                 }
-            });
+            })
+            //Load Modal function
+            modal();
         },
         //En cas d'erreur
         error: function () {
@@ -127,7 +131,28 @@ $('.swapTheme').click(function () {
     //     }
 })
 
-//fonction clean les doublons des libellés pour éviter de push plusieurs fois les mêmes thèmes dans la liste
+//Création de la fonction modal pour ne pas avoir à retaper 2 fois la fonction
+function modal() {
+    //Click sur une balise avec la classe .myImg pour lancer la fonction de pop du modal
+    $('.myImg').click(function () {
+        //On affiche le modal
+        $('#myModal').css("display", "block");
+        //On set la source de l'image dans le modal
+        $('#imgModal').attr('src', $(this).attr('src'));
+        //On set le sous-titre de l'image avec l'alt de l'image
+        $('#caption').html($(this).attr("alt"));
+    });
+
+    //On clique sur une balise avec la classe .closeImg pour fermer le modal
+    //P.s : je l'ai reglé sur le modal lui même pour que l'on puisse cliquer n'importe où pour fermer le modal
+    $('.closeImg').click(function () {
+        //On cache le modal
+        $('#myModal').css("display", "none");
+    });
+};
+
+
+//Fonction clean les doublons des libellés pour éviter de push plusieurs fois les mêmes thèmes dans la liste
 //p.s : trouvée sur https://www.unicoda.com/?p=579
 function cleanArray(array) {
     var i, out = [], obj = {};

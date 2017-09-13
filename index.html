@@ -3,7 +3,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link id="theme" rel="stylesheet" href="styleDark.css">
 <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet"><head>
+<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+<link rel="stylesheet" href="modalImg.css">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,6 +14,13 @@
 </head>
 
 <body>
+    <!-- Modal Images -->
+    <div id="myModal" class="modal closeImg">
+        <img id="imgModal" class="modal-content">
+        <div id="caption"></div>
+    </div>
+    <!-- /Modal -->
+
     <div class="row navbar-inverse navbar-fixed-top navStyle">
         <div class="col-xs-offset-1 col-xs-6 hidden-xs text-left">
             <a href="index.html">
@@ -47,7 +57,7 @@
     <div id="content" class="container text-center">
         <div class="contour">
             <div class="row">
-                <a href="http://lorempixel.com/800/200/"><img class="topImage" src="http://lorempixel.com/800/200/"></a></div>
+                <img class="topImage myImg" src="http://lorempixel.com/800/200/"></div>
             <div class="titre">
                 Excepteur sint occaecat cupidatat non</div>
             <div class="contenu text-justify">
