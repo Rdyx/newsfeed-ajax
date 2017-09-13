@@ -57,8 +57,10 @@ $('.news').click(function () {
                 //Et affiche celle qui a le même
                 if ($(this).html() == '<i class="fa fa-random" aria-hidden="true"></i> Random') {
                     randomz = randomize(0, array.length);
+                    //Par cours du tableau de news
                     for (var l = 0; l < array.length; l++) {
-                        $('#newsNum' + l).html() == '#' + Number(randomz + 1) ? $('#news' + l).removeClass('hidden') : $('#news' + l).addClass('hidden')
+                        //-1 syr news num car on ajoute 1 lors de l'insertion pour éviter que la première news soit affichée avec l'index 0
+                        $('#newsNum' + Number(l - 1)).html() == '#' + randomz ? $('#news' + l).removeClass('hidden') : $('#news' + l).addClass('hidden')
                     }
                 }
                 //Boucle qui parcours tout le tableau de news pour récupérer 
