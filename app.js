@@ -26,7 +26,7 @@ $('.news').click(function () {
             $('.libelDrop').removeClass('hidden');
             //Boucle qui va push les données dans le tableau tant que i sera inférieur au nombre de data.feed.entry
             for (var i = 0; i < (data.feed.entry).length; i++) {
-                array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t, data.feed.entry[i].gsx$date.$t, data.feed.entry[i].gsx$altimg.$t]);
+                array.push([data.feed.entry[i].gsx$img.$t, data.feed.entry[i].gsx$titre.$t, data.feed.entry[i].gsx$content.$t, data.feed.entry[i].gsx$theme.$t, data.feed.entry[i].gsx$date.$t]);
                 //tableau pour les libellés (dont on se servira pour la liste et éviter les doublons via fonction)
                 labelArray.push(data.feed.entry[i].gsx$theme.$t);
             };
