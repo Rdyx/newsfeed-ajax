@@ -35,12 +35,16 @@ $('.news').click(function () {
             //j sera supérieur à -1 et sera décrémentée à chaque tour (donc qui finit avec j = 0, premier index du tableau)
             for (var j = (data.feed.entry).length - 1; j > -1; j--) {
                 //On push dans le #content avec les classes pour le style, flèche up pour remonter au top et nom du thème de l'article
-                $('#content').append('<div class="contour news" id="news' + j + '"><div class="row">\
-                <img class="topImage myImg" src="' + array[j][0] + '" alt="' + array[j][5] + '"></div><div class="titre">\
-                ' + array[j][1] + '</div><div class="contenu text-justify">\
-                ' + array[j][2] + '</div><a href="#" alt="Back-To-The-Top !">\
-                <ul class="list-inline text-right"><li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
-                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li><li id="newsNum' + j + '">#' + Number(j + 1) + '</li><li>- Publié le <a href="#"><strong class="date">' + array[j][4] + '</strong></a></li></ul></div> ');
+                $('#content').append('<div class="contour news" id="news' + j + '">\
+                <div class="row"><img class="topImage myImg" src="' + array[j][0] + '" alt="' + array[j][1] + '"></div>\
+                <div class="titre">' + array[j][1] + '</div>\
+                <div class="contenu text-justify">' + array[j][2] + '</div>\
+                <a href="#" alt="Back-To-The-Top !">\
+                <ul class="list-inline text-right">\
+                <li><i class="fa fa-chevron-up" aria-hidden="true"></i></a></li>\
+                <li><a class="txtTheme" href="#">'+ array[j][3] + '</a></li>\
+                <li id="newsNum' + j + '">#' + Number(j + 1) + '</li>\
+                <li>- Publié le <a href="#"><strong class="date">' + array[j][4] + '</strong></a></li></ul></div>');
             }
             //Boucle qui utilise la fonction pour purger les libellés doublons (qui sont stockés sous forme de nouveau tableau dans la fonction)
             //Tri dans l'ordre alphabétique grâce à .sort()
