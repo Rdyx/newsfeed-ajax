@@ -99,6 +99,8 @@ $('.news').click(function () {
             });
             //Recherche des termes dans les titres en appuyant sur entrée / click out
             $('.maRecherche').change(function () {
+                //On elève la classe bolded aux libellés
+                $('.txtTheme').removeClass('bolded');
                 //Boucle qui va parcourir le tableau
                 for (var n = 0; n < array.length; n++) {
                     //On compare les titres dans le tableau avec le champ de recherche. Grâce à .match on va récupérer
